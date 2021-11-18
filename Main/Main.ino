@@ -29,6 +29,6 @@ void setup()
 void loop() 
 {
   //Temperatur();
-  //RandomElev(); //Test
-  functionGravity(4);
+  RandomElev(); //Test
+  //functionGravity(4);
 }
