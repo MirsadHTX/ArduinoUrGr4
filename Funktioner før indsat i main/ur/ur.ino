@@ -241,6 +241,15 @@ void Ur()
        lcd.print("Tillykke Jonatan");
     }
     
+<<<<<<< Updated upstream
+=======
+    for (int minV = 0; minV < 25 - clock.dayOfMonth; minV = minV + 1)
+    {
+      Juledag(minV);
+    }
+
+  
+>>>>>>> Stashed changes
     //Serial.println(" ");
 
 
@@ -252,6 +261,7 @@ void Ur()
     }
     
 }
+<<<<<<< Updated upstream
 
     //flyt jul til egen klasse!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   void Juledag(int minV)
@@ -279,4 +289,12 @@ void Ur()
          
       }
     
+=======
+void Juledag(int minV)
+  {
+    if(clock.month == 12)
+      {
+         lcd.print(24-minV);
+      }
+>>>>>>> Stashed changes
   }

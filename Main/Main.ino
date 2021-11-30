@@ -23,7 +23,9 @@ void setup()
 
   //starter positionsmåledimsen
   accelmeter.init();
- 
+
+  //random seed til randomelev
+  randomSeed(analogRead(0));
 }
 
 void loop() 
@@ -31,4 +33,5 @@ void loop()
   //Temperatur();
   //RandomElev(); //Test
   //functionGravity(4);
+  
 }
