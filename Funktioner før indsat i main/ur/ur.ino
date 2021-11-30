@@ -13,8 +13,8 @@ void setup()
     Serial.begin(9600);
     
     clock.begin();
-    clock.fillByYMD(2021, 12, 24); //Jan 19,2013 //år, måned, dag
-    clock.fillByHMS(23, 59, 0); //15:28 30"
+    clock.fillByYMD(2021, 12,23); //Jan 19,2013 //år, måned, dag
+    clock.fillByHMS(23, 59, 55); //15:28 30"
     clock.fillDayOfWeek(THU);//Saturday
     clock.setTime();//write time to the RTC chip
 }
