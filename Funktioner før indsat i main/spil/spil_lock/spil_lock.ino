@@ -1,92 +1,85 @@
 #include <DS1307.h>
-
 #include <rgb_lcd.h> //lav kortere delay for tid efter den er under 800 igen
+#include <MMA7660.h>
 #include <Wire.h>
+
 
 rgb_lcd lcd;
 
-int sensorValue1;
-
-long count;
-
-bool sensorValue2;
-bool flag = 0;
-
-const int colorR = 50;
-const int colorG = 82;
-const int colorB = 138;
+int spilValue;
+int randomNummer = random (50,973);
+bool knap;
 
 void setup() 
 {
     lcd.begin(16, 2);
+    lcd.setRGB(255, 255, 255);
 
-    lcd.setRGB(255, 138, 50);
-
-    pinMode(4, OUTPUT);
-
-    pinMode(3,INPUT);
+    pinMode(4,INPUT);
 }
 
 void loop()
 {
   lcd.clear();
 
-  lcd.setCursor(0, 1);
+  knap = digitalRead(4);
+        
+  // set the cursor to column 0, line 1
   
-  //set the cursor to column 0, line 1
-  
-  //(note: line 1 is the second row, since counting begins with 0):
+  // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 0);
   
-  sensorValue1 = analogRead(A0);
+  spilValue = analogRead(A0);
 
-  //knap
-  sensorValue2 = digitalRead(4);
+  lcd.print(spilValue);
+  //delay(100);
 
-  lcd.print(sensorValue1);
-  delay(100);
+   //int randomNummer = random (50,973);
+   lcd.setCursor(0, 1);
+   lcd.print(randomNummer);
+   //delay(100);
 
-//knap
-  lcd.print(count);
-  delay(100);
-     
 
- if(sensorValue1 > 800)
+ if(spilValue > randomNummer -50 && spilValue < randomNummer + 50)
  {
-      lcd.setRGB(255, 0, 0);
-      
+      lcd.setRGB(245,212,66);
+
       functionSos();
  }
 
-  if(sensorValue1 < 800)
+ if(spilValue > randomNummer + 50 && spilValue < randomNummer - 50)
  {
-    lcd.setRGB(255, 138, 50);
-
-    digitalWrite(4, LOW);   // turn the LED on (HIGH is the voltage level)
-    delay(1000);   
+  lcd.setRGB(255, 255, 255);
  }
-//knap
-    if(sensorValue2 == 0)
-    {
-      flag = 0;
-    }
 
-
-    if(sensorValue2 == 1 && flag == 0)
-    {
-      count = count + 1;
-      flag = 1;
-    }
+ if(spilValue == 0)
+ {
+  randomNummer = random (50,973);
+  lcd.setRGB(255, 255, 255);
+ }
+  
 }
 
 void functionSos()
 {
-  digitalWrite(4, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
-  
-  digitalWrite(4, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
-  
-  digitalWrite(4, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);   
+
+ if(spilValue > randomNummer - 25 && spilValue < randomNummer + 25)
+ {
+    if(knap == 1)
+    {
+      lcd.setRGB(0, 255, 10); //aka rigtigt
+      delay(5);
+      
+    }
+ }
+
+
+
+ if(spilValue > randomNummer + 25 || spilValue < randomNummer - 25)
+ {
+    if(knap == 1)
+    {
+      lcd.setRGB(255, 0, 0); //aka forkert
+    }
+ }
 }
