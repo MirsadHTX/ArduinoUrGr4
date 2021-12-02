@@ -87,7 +87,7 @@ void Temperatur()    //MNE
 void RandomElev()    //PSK
 {
   lcd.clear();
-  randomElevR = random(0, 32);
+  randomElevR = random(30);
 
 
   if (randomElevR == 0)
@@ -243,11 +243,6 @@ void RandomElev()    //PSK
   if (randomElevR == 29)
   {
     lcd.print("Mirsad");
-  }
-
-  if (randomElevR == 31)
-  {
-    lcd.print("Emilie<3");
   }
   
   delay(1000);

@@ -13,8 +13,8 @@ void setup()
     Serial.begin(9600);
     
     clock.begin();
-    clock.fillByYMD(2021, 12, 24); //Jan 19,2013 //år, måned, dag
-    clock.fillByHMS(23, 59, 0); //15:28 30"
+    clock.fillByYMD(2021, 11,23); //Jan 19,2013 //år, måned, dag    //KAN DETTE EVT SLETTES, SÅ LÆNGE BATTERIET ER SAT TIL?
+    clock.fillByHMS(23, 59, 55); //15:28 30"
     clock.fillDayOfWeek(THU);//Saturday
     clock.setTime();//write time to the RTC chip
 }
@@ -241,19 +241,18 @@ void Ur()
        lcd.print("Tillykke Jonatan");
     }
     
-    //Serial.println(" ");
+    int minV = 0;
+    minV = minV + 1;
+    
+         if(minV = 25)
+        {
+         minV = 0;
+        }
 
-
-    //julekalender - forsøg at sætte i funktion senere
-
-    for (int minV = 0; minV < 25 - clock.dayOfMonth; minV = minV + 1)
-    {
-      Juledag(minV);
-    }
+    Juledag(minV);
     
 }
 
-    //flyt jul til egen klasse!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   void Juledag(int minV)
   {
     if(clock.month == 12)
@@ -265,18 +264,23 @@ void Ur()
          lcd.print(" dage til jul");
         }
 
-      /*if(clock.dayOfMonth == 25) //virker ikke, nødvendig???????????????????????????????
-        {
-         lcd.setCursor(0,0);
-         lcd.print("igen");
-        }*/
-
       if(clock.dayOfMonth == 24)
         {
          lcd.setCursor(0,0);
          lcd.print("God Jul");
         }
-         
+
+         if(clock.dayOfMonth > 24)
+        {
+         lcd.setCursor(0,0);
+         lcd.print("Jul kommer igen");
+        }
       }
+
+         if(clock.month != 12)
+        {
+         lcd.setCursor(0,0);
+         lcd.print("Jul kommer igen");
+        }
     
   }
