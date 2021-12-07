@@ -47,7 +47,7 @@ void loop()
       functionSos();
  }
 
- if(spilValue > randomNummer + 50 && spilValue < randomNummer - 50)
+ if(spilValue > randomNummer + 50 or spilValue < randomNummer - 50)
  {
   lcd.setRGB(255, 255, 255);
  }
