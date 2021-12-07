@@ -272,7 +272,7 @@ void Spil()         //??
    {
         lcd.setRGB(245,212,66);
   
-        FunctionSos();
+        functionSos();
    }
   
    if(spilValue > randomNummer + 50 or spilValue < randomNummer - 50)
@@ -286,9 +286,9 @@ void Spil()         //??
     lcd.setRGB(255, 255, 255);
    }
 }
-}
 
-void FunctionSos()
+
+void functionSos()
 {
 
    if(spilValue > randomNummer - 25 && spilValue < randomNummer + 25)
