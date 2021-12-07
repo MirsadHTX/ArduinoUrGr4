@@ -14,7 +14,7 @@ void setup()
     
     clock.begin();
     clock.fillByYMD(2021, 11,23); //Jan 19,2013 //år, måned, dag    //KAN DETTE EVT SLETTES, SÅ LÆNGE BATTERIET ER SAT TIL?
-    clock.fillByHMS(23, 59, 55); //15:28 30"
+    clock.fillByHMS(9, 14, 55); //15:28 30"
     clock.fillDayOfWeek(THU);//Saturday
     clock.setTime();//write time to the RTC chip
 }
@@ -250,8 +250,26 @@ void Ur()
         }
 
     Juledag(minV);
+
+    RingTime ();
     
 }
+
+  void RingTime ()
+ {
+     pinMode(3, OUTPUT); //lyd
+     if(clock.hour == 8 && clock.minute == 15 && clock.second < 2 or clock.hour == 9 && clock.minute == 15 && clock.second < 2 or clock.hour == 9 && clock.minute == 35 && clock.second < 2 or clock.hour == 10 && clock.minute == 35 && clock.second < 2 or clock.hour == 10 && clock.minute == 45 && clock.second < 2 or clock.hour == 11 && clock.minute == 45 && clock.second < 2 or clock.hour == 12 && clock.minute == 15 && clock.second < 2 or clock.hour == 13 && clock.minute == 15 && clock.second < 2 or clock.hour == 13 && clock.minute == 25 && clock.second < 2 or clock.hour == 14 && clock.minute == 25 && clock.second < 2 or clock.hour == 14 && clock.minute == 30 && clock.second < 2 or clock.hour == 15 && clock.minute == 30 && clock.second < 2)
+    {
+     //lcd.setRGB(255, 10, 10);
+       digitalWrite(3, HIGH);   // turn the LED on (HIGH is the voltage level)
+       delay(1);
+  
+      digitalWrite
+      (3, LOW);    // turn the LED off by making the voltage LOW
+      //delay(100000);                       // wait for a second
+    }
+ }
+
 
   void Juledag(int minV)
   {
