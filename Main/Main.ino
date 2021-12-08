@@ -1,10 +1,14 @@
 #include "rgb_lcd.h"
 #include "MMA7660.h"
 #include <Wire.h>
+#include "DS1307.h"
 
 //int tilstand;
 rgb_lcd lcd;
 MMA7660 accelmeter;
+
+//ur
+DS1307 clock;
 
 long randomElevR;
 
@@ -36,6 +40,13 @@ void setup()
   //Pinmodes til peripherals
   pinMode(4,INPUT); //Det er temp
 
+  //tid til ur funktionen
+  clock.begin();
+    clock.fillByYMD(2021, 11,23); //Jan 19,2013 //år, måned, dag    //KAN DETTE EVT SLETTES, SÅ LÆNGE BATTERIET ER SAT TIL?
+    clock.fillByHMS(9, 14, 55); //15:28 30"
+    clock.fillDayOfWeek(THU);//Saturday
+    clock.setTime();//write time to the RTC chip
+
 }
 
 void loop() 
@@ -44,25 +55,40 @@ void loop()
   //RandomElev(); //Test
   //functionGravity(4);
     //RandomElev();
-  functionGravity(4);
+  functionGravity(6);
 
+  if (stadieCount == 1)
+  {
+    Ur();
+  }
+
+  if (stadieCount == 2)
+  {
+    Stopur();
+  }
+  
   if (stadieCount == 3)
   {
+    lcd.clear();
     Temperatur();
   }
 
   if (stadieCount == 4)
   {
+    lcd.clear();
     RandomElev();
   }
 
   if (stadieCount == 5)
   {
+    lcd.clear();
     Spil();
   }
 
-  if (stadieCount == x)
+  if (stadieCount == 6)
   {
-    
+    lcd.clear();
+    lcd.setRGB(255, 255, 255);
+    lcd.print("6");
   }
 }
