@@ -69,3 +69,27 @@ void RingTime ()
         }
     
   }
+
+ /* void Stopur_stop()
+{
+    while (knapTilstand == 1)
+    {
+      lcd.clear();
+      lcd.print(h); 
+      lcd.print(":"); 
+      lcd.print(m); 
+      lcd.print(":"); 
+      lcd.print(s);
+    }
+
+    if (knapTilstand == 0)
+    {
+      knapTilstand = 0;
+      h = 0;     
+      m = 0;     
+      s = 0;     
+      ms = 0; 
+        
+      Stopur();
+    }
+}*/

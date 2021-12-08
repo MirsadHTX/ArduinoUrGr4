@@ -290,14 +290,35 @@ void Ur()            //MNE
     RingTime ();
 }
 
-// 
 
-void Stopur()        //PSK
+// Credit til Jakobs gruppe for at hjælpe med den her funktion ;)
+void Stopur()     // PSK
 {
-  lcd.clear();
-  lcd.setRGB(255, 255, 255);
+  lcd.setCursor(0, 0);
+  //lcd.print("Stopur");
   
-  lcd.print("2");
+  if (digitalRead(4) && trykFoer == false) 
+  {
+    if (urStop == false) {
+      urStop = true;
+    } 
+    else 
+    {
+      urStop = false;
+      tidFoer = millis();
+      lcd.clear();
+    } 
+  }
+   
+  trykFoer = digitalRead(4);
+  
+  if (urStop == false) 
+  {
+    count = millis() - tidFoer;
+  }
+  
+  lcd.setCursor(0, 2);
+  lcd.print(count / 1000);
 }
 
 void Temperatur()    //MNE
@@ -307,8 +328,9 @@ void Temperatur()    //MNE
 
     lcd.setRGB(255, 255, 255);
 
-    lcd.setCursor(1, 0);
-    lcd.print("3"); //viser hvilket stadie man er i
+    lcd.setCursor(0, 0);
+    //lcd.print("3"); //viser hvilket stadie man er i
+    lcd.print("Ikke i grader :(");
     
     lcd.setCursor(0, 1);
 
@@ -316,6 +338,8 @@ void Temperatur()    //MNE
     sensorValue = analogRead(A0); //range -40 til 125
     
      lcd.print(sensorValue); //mangler omregning til celsius
+     lcd.setCursor(5, 2);
+     lcd.print("Temperatur");
      delay(100);
 }
 
@@ -326,7 +350,8 @@ void RandomElev()    //PSK
   lcd.setRGB(255, 255, 255);
 
   lcd.setCursor(1, 0);
-  lcd.print("4"); //viser hvilket stadie man er i
+  //lcd.print("4"); //viser hvilket stadie man er i
+  lcd.print("NAME:");
   
   lcd.setCursor(0, 1);
 
@@ -488,29 +513,25 @@ void RandomElev()    //PSK
   delay(1000);
 }
 
-void Spil()         //??
+void Spil()         //MNE & NC
 {
   lcd.clear();
 
+  lcd.print("Turn the Rotate thing!");
+
+  lcd.setCursor(0, 2);
+  lcd.print("Press the button when green");
   knap = digitalRead(4);
 
   lcd.setCursor(1, 0);
-  lcd.print("5"); //viser hvilket stadie man er i
-  
-  // set the cursor to column 0, line 1
+  //lcd.print("5"); //viser hvilket stadie man er i
   
   // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 0);
   
   spilValue = analogRead(A0);
+  //lcd.setCursor(0, 1);
 
-  //lcd.print(spilValue);
-  //delay(100);
-
-   //int randomNummer = random (50,973);
-   lcd.setCursor(0, 1);
-   //lcd.print(randomNummer);
-   //delay(100);
 
 
    if(spilValue > randomNummer -50 && spilValue < randomNummer + 50)
@@ -531,7 +552,4 @@ void Spil()         //??
     lcd.setRGB(255, 255, 255);
    }
 }
-
-
- //Stadiecount
  

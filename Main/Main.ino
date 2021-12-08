@@ -10,6 +10,7 @@ MMA7660 accelmeter;
 //ur
 DS1307 clock;
 
+//variabel til random elev
 long randomElevR;
 
 
@@ -24,6 +25,13 @@ long stadieCount = 1;
 int spilValue;
 int randomNummer = random (50,973);
 bool knap;
+
+//varibler til stopur funktion
+bool urStop;
+int tidFoer;
+int count;
+int trykFoer;
+
 
 void setup() 
 {
@@ -57,11 +65,13 @@ void loop()
     //RandomElev();
   functionGravity(6);
 
+  lcd.clear();
+  
   if (stadieCount == 1)
   {
     Ur();
   }
-
+    
   if (stadieCount == 2)
   {
     Stopur();
@@ -69,26 +79,16 @@ void loop()
   
   if (stadieCount == 3)
   {
-    lcd.clear();
     Temperatur();
   }
 
   if (stadieCount == 4)
   {
-    lcd.clear();
     RandomElev();
   }
 
   if (stadieCount == 5)
   {
-    lcd.clear();
     Spil();
-  }
-
-  if (stadieCount == 6)
-  {
-    lcd.clear();
-    lcd.setRGB(255, 255, 255);
-    lcd.print("6");
   }
 }
