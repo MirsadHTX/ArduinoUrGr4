@@ -1,6 +1,6 @@
 #include <DS1307.h>
 #include <rgb_lcd.h> //lav kortere delay for tid efter den er under 800 igen
-//#include <MMA7660.h>
+#include <MMA7660.h>
 #include <Wire.h>
 
 
